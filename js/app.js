@@ -15,22 +15,38 @@ var dataHolder = (function() {
 })();
 
 var uiController = (function() {
-
+    return {
+        displayTotal: function(total) {
+            if(total.length > 0) {
+                console.log(total);
+            }
+            else {
+                console.log("nothing yet");
+            }
+            document.querySelector(".display__total").textContent = total.join("");
+        }
+    };
 })();
 
 var controller = (function(dataHolder, uiController) {
     var setupEventlisteners = function() {
-        var allData, clickedNum;
+        var allData;
         
         allData = dataHolder.getData();
         
         document.querySelector(".numpad").addEventListener("click", function(event){
+            var clickedNum, clickedNumSplit, clickedNumID;
             clickedNum = event.target.id;
+            clickedNumSplit = clickedNum.split("-");
+            clickedNumID = clickedNumSplit[1];
 
-            // dataHolder.addNumber();
-            console.log(clickedNum);
-            console.log(allData);
+            //Push ID to data
+            allData.currentAmount.push(clickedNumID);
+            console.log(allData.currentAmount);
+
+            uiController.displayTotal(allData.currentAmount);
         });
+        
     }
 
     return {
