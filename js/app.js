@@ -1,17 +1,13 @@
 var dataHolder = (function() {
     var data = {
         currentAmount: [],
-        numAmount: 0,
+        numAmount: 0.00,
         currentRange: 0,
-        numPeople: -1,
-        currentTip: 0
+        currentTip: 0,
+        eachPerson: []
     };
 
     return {
-        addRange: function() {
-            console.log(data.currentRange);
-        },
-
         getData: function() {
             return data;
         },
@@ -24,8 +20,16 @@ var dataHolder = (function() {
             return data.currentRange;
         },
 
+        getNumAmount: function() {
+            return data.numAmount;
+        },
+
         getCurrentTip: function() {
             return data.currentTip;
+        },
+
+        getEachPerson: function() {
+            return data.eachPerson;
         },
         
         changeRange: function(range) {
@@ -34,6 +38,16 @@ var dataHolder = (function() {
 
         changeTip: function(tip) {
             data.currentTip = tip;
+        },
+
+        setNumAmount: function(num) {
+            data.numAmount = num;
+        },
+
+        setEachPerson: function(per) {
+            for(var i = 0; i < data.currentRange; i++){
+                data.eachPerson.push(per);
+            }
         }
     }
 })();
@@ -59,7 +73,6 @@ var uiController = (function() {
         displayTip: function(tip) {
             var tipDisplay;
             tipDisplay = document.querySelector(".tip__display");
-            console.log(tip);
             if(tip) {
                 tipDisplay.textContent = tip;
             } else {
@@ -67,15 +80,14 @@ var uiController = (function() {
             }
         },
 
-        switchOptions: function(range) {
+        switchOptions: function(range, eachPerPerson) {
             document.querySelector(".options").classList.toggle("hidden");
-            this.showSplit(range);
+            this.showSplit(range, eachPerPerson);
         },
 
-        showSplit: function(range) {
-            console.log(range);
+        showSplit: function(range, eachPerPerson) {
             for(var i = 0; i < range; i++){
-                document.querySelector(".split__display").innerHTML += '<div class="split__display--item"></div>';
+                document.querySelector(".split__display").innerHTML += '<div class="split__display--item">' + eachPerPerson[i] + '</div>';
             }
         }
     };
@@ -83,19 +95,34 @@ var uiController = (function() {
 
 var controller = (function(dataHolder, uiController) {
     var setupEventlisteners = function() {
-        var currAmount;
+        var currAmount, numberAmount;
         
         currAmount = dataHolder.getCurrentAmount();
         
         //Numpad event listener
         document.querySelector(".numpad").addEventListener("click", function(event){
-            var clickedNum, clickedNumSplit, clickedNumID;
+            var clickedNum, clickedNumSplit, clickedNumID, setNum, fixedNum;
             clickedNum = event.target.id;
             clickedNumSplit = clickedNum.split("-");
             clickedNumID = clickedNumSplit[1];
+            console.log(clickedNumID);
 
+            //Backspace
+            if(clickedNumID < 10){
+                currAmount.push(clickedNumID);
+            } else {
+                currAmount.pop();
+            }
             //Push ID to data.currentAmount
-            currAmount.push(clickedNumID);
+            
+
+            // totalAmount = parseInt(total.join(""))/100;
+            // totalAmount2 = totalAmount.toFixed(2);
+
+            setNum = parseInt(currAmount.join(""))/100;
+            fixedNum = setNum.toFixed(2);
+            dataHolder.setNumAmount(parseFloat(fixedNum));
+            
 
             uiController.displayTotal(currAmount);
         });
@@ -134,12 +161,30 @@ var controller = (function(dataHolder, uiController) {
 
     //splits bill
     var splitBill = function() {
-        var range;
+        var range, numAmount, tipPerc, tipAmount, finalEach, totalPer, totalBill;
 
         //Get data.currentRange
         range = dataHolder.getCurrentRange();
+        numAmount = dataHolder.getNumAmount();
+        tipPerc = dataHolder.getCurrentTip();
 
-        uiController.switchOptions(range);
+        //Calculate split
+        //Calculated tip and added tip to total amount
+        tipAmount = numAmount * (tipPerc/100);
+        console.log(tipAmount);
+
+        totalBill = numAmount + tipAmount;
+        console.log(totalBill);
+
+        //Problem
+        totalPer = totalBill/range;
+        finalEach = (totalPer).toFixed(2);
+
+        dataHolder.setEachPerson(finalEach);
+
+        eachPerArray = dataHolder.getEachPerson();
+
+        uiController.switchOptions(range, eachPerArray);
     }
 
     return {
