@@ -42,27 +42,41 @@ var uiController = (function() {
     return {
         displayTotal: function(total) {
             //total = data.currentAmount array
-            var totalAmount, totalString;
+            var totalAmount, totalAmount2, totalString;
 
             totalAmount = parseInt(total.join(""))/100;
-            document.querySelector(".display__total").textContent = totalAmount;
-            total.numAmount = totalAmount;
+            totalAmount2 = totalAmount.toFixed(2);
+            document.querySelector(".display__total").textContent = totalAmount2;
+            document.querySelector(".total__bill").textContent = totalAmount2;
 
         },
         
         displayRange: function(range) {
             document.querySelector(".slider__display").textContent = range;
+            document.querySelector(".friends__num").textContent = range;
         },
 
         displayTip: function(tip) {
             var tipDisplay;
-            tipDisplay = document.querySelector(".tip__display").textContent;
+            tipDisplay = document.querySelector(".tip__display");
+            console.log(tip);
             if(tip) {
-                tipDisplay = tip;
+                tipDisplay.textContent = tip;
             } else {
-                tipDisplay = "---";
+                tipDisplay.textContent = "0";
             }
-            
+        },
+
+        switchOptions: function(range) {
+            document.querySelector(".options").classList.toggle("hidden");
+            this.showSplit(range);
+        },
+
+        showSplit: function(range) {
+            console.log(range);
+            for(var i = 0; i < range; i++){
+                document.querySelector(".split__display").innerHTML += '<div class="split__display--item"></div>';
+            }
         }
     };
 })();
@@ -91,6 +105,9 @@ var controller = (function(dataHolder, uiController) {
 
         //Tip amount event listener
         document.querySelector(".tip").addEventListener("click", setTip);
+
+        //Split bill event listener
+        document.querySelector(".split").addEventListener("click", splitBill);
     };
 
     //sets the currentRange to users input
@@ -113,6 +130,16 @@ var controller = (function(dataHolder, uiController) {
         tip = parseInt(event.target.textContent.replace("%", ""))
         dataHolder.changeTip(tip);
         uiController.displayTip(tip);
+    }
+
+    //splits bill
+    var splitBill = function() {
+        var range;
+
+        //Get data.currentRange
+        range = dataHolder.getCurrentRange();
+
+        uiController.switchOptions(range);
     }
 
     return {
