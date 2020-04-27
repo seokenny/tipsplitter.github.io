@@ -1,15 +1,39 @@
 var dataHolder = (function() {
     var data = {
-        currentAmount: []
+        currentAmount: [],
+        numAmount: 0,
+        currentRange: 0,
+        numPeople: -1,
+        currentTip: 0
     };
 
     return {
-        addNumber: function() {
-
+        addRange: function() {
+            console.log(data.currentRange);
         },
 
         getData: function() {
             return data;
+        },
+
+        getCurrentAmount: function() {
+            return data.currentAmount;
+        },
+
+        getCurrentRange: function() {
+            return data.currentRange;
+        },
+
+        getCurrentTip: function() {
+            return data.currentTip;
+        },
+        
+        changeRange: function(range) {
+            data.currentRange = range;
+        },
+
+        changeTip: function(tip) {
+            data.currentTip = tip;
         }
     }
 })();
@@ -17,36 +41,78 @@ var dataHolder = (function() {
 var uiController = (function() {
     return {
         displayTotal: function(total) {
-            if(total.length > 0) {
-                console.log(total);
+            //total = data.currentAmount array
+            var totalAmount, totalString;
+
+            totalAmount = parseInt(total.join(""))/100;
+            document.querySelector(".display__total").textContent = totalAmount;
+            total.numAmount = totalAmount;
+
+        },
+        
+        displayRange: function(range) {
+            document.querySelector(".slider__display").textContent = range;
+        },
+
+        displayTip: function(tip) {
+            var tipDisplay;
+            tipDisplay = document.querySelector(".tip__display").textContent;
+            if(tip) {
+                tipDisplay = tip;
+            } else {
+                tipDisplay = "---";
             }
-            else {
-                console.log("nothing yet");
-            }
-            document.querySelector(".display__total").textContent = total.join("");
+            
         }
     };
 })();
 
 var controller = (function(dataHolder, uiController) {
     var setupEventlisteners = function() {
-        var allData;
+        var currAmount;
         
-        allData = dataHolder.getData();
+        currAmount = dataHolder.getCurrentAmount();
         
+        //Numpad event listener
         document.querySelector(".numpad").addEventListener("click", function(event){
             var clickedNum, clickedNumSplit, clickedNumID;
             clickedNum = event.target.id;
             clickedNumSplit = clickedNum.split("-");
             clickedNumID = clickedNumSplit[1];
 
-            //Push ID to data
-            allData.currentAmount.push(clickedNumID);
-            console.log(allData.currentAmount);
+            //Push ID to data.currentAmount
+            currAmount.push(clickedNumID);
 
-            uiController.displayTotal(allData.currentAmount);
+            uiController.displayTotal(currAmount);
         });
         
+        //Range event listener
+        document.querySelector(".slider").addEventListener("change", setRange);
+
+        //Tip amount event listener
+        document.querySelector(".tip").addEventListener("click", setTip);
+    };
+
+    //sets the currentRange to users input
+    var setRange = function() {
+        var range;
+
+        range = Math.round(parseInt(event.target.value)/200);
+
+        dataHolder.changeRange(range);
+        uiController.displayRange(range);
+        //DO TO: Make it snap to the range
+        
+    }
+
+    //sets the chosenTip
+    var setTip = function() {
+        var currentTip;
+
+        //data.currentTip = 0
+        tip = parseInt(event.target.textContent.replace("%", ""))
+        dataHolder.changeTip(tip);
+        uiController.displayTip(tip);
     }
 
     return {

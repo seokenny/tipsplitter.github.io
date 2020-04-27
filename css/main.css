@@ -16,4 +16,22 @@
   border: 1px solid orange;
   display: inline-block;
 }
+
+.slider {
+  width: 50%;
+}
+
+.tip {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.tip__button {
+  width: 20%;
+  height: 40px;
+}
 /*# sourceMappingURL=main.css.map */

@@ -7,9 +7,28 @@
     </head>
 
     <body>
+        <!--Display-->
         <div class="display">
             <h1 class="display__total"></h1>
         </div>
+
+        <!--Slider-->
+        <div class="slider">
+            <input type="range" min="2" max="2000" value="5" class="slider__ui" id="sliderRange">
+            <div class="slider__display">-</div>
+        </div>
+
+        <!--Tip Percent -->
+        <div class="tip">
+            <button class="tip__button" type="button">15%</button>
+            <button class="tip__button" type="button">18%</button>
+            <button class="tip__button" type="button">20%</button>
+            <button class="tip__button" type="button">---</button>
+            <div class="tip__display"></div>
+        </div>
+        
+
+        <!--Numpad-->
         <div class="numpad">
             <div class="numpad__btn" id="num-1"></div>
             <div class="numpad__btn" id="num-2"></div>
