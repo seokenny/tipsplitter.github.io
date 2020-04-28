@@ -66,14 +66,20 @@ body {
         background-color: rgb(243, 243, 243,);
         position: relative;
         overflow: hidden;
-        // overflow: hidden;
-        &:hover .test {
-            animation: tipSlider 2.25s ease-in-out;
-        }
-        &:hover .checkimg {
-            animation: checkSlider 2s ease-in-out;
-        }
+        font-weight: bold;
+        letter-spacing: 1px;
+        // &:hover .test {
+        //     animation: tipSlider 2.25s ease-in-out;
+        // }
+        // &:hover .checkimg {
+        //     animation: checkSlider 2s ease-in-out;
+        // }
     }
+}
+
+.setTip {
+    background-color: $default-color;
+    color: white;
 }
 
 .test {
@@ -84,6 +90,10 @@ body {
     top: 100%;
 }
 
+.testAnimate {
+    animation: tipSlider 2.25s ease-in-out;
+}
+
 .checkimg {
     height: 0;
     position: absolute;
@@ -92,10 +102,14 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.checkAnimate {
+    animation: checkSlider 2s ease-in-out;
+}
+
 .split {
     &:hover .split__button {
         animation: transformButton .5s ease-in-out;
-          animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
     }
     &__button {
         text-transform: uppercase;

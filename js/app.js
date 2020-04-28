@@ -4,7 +4,8 @@ var dataHolder = (function() {
         numAmount: 0.00,
         currentRange: 0,
         currentTip: 0,
-        eachPerson: []
+        eachPerson: [],
+        allTips: ["15%", "18%", "20%", "25%"]
     };
 
     return {
@@ -30,6 +31,10 @@ var dataHolder = (function() {
 
         getEachPerson: function() {
             return data.eachPerson;
+        },
+
+        getAllTips: function() {
+            return data.allTips;
         },
         
         changeRange: function(range) {
@@ -70,8 +75,32 @@ var uiController = (function() {
             document.querySelector(".friends__num").textContent = range;
         },
 
-        displayTip: function(tip) {
-            var tipDisplay;
+        displayTip: function(tip, allTips) {
+            var tipDisplay, allButtons, allButtonsArr;
+            allButtons = [];
+            console.log(event);
+            console.log(allTips);
+
+            allButtons = document.querySelectorAll(".tip__button");
+            allButtonsArr = Array.from(allButtons);
+            console.log(allButtonsArr);
+
+            allTests = document.querySelectorAll(".test");
+            allTestsArr = Array.from(allTests);
+
+            allChecks = document.querySelectorAll(".checkimg");
+            allChecksArr = Array.from(allChecks);
+
+            for(var i = 0; i < allButtonsArr.length; i++){
+                allButtonsArr[i].classList.remove("setTip");
+                allTests[i].classList.remove("testAnimate");
+                allChecks[i].classList.remove("checkAnimate");
+            }
+            event.target.classList.add("setTip");
+            event.target.firstElementChild.classList.add("testAnimate");
+            event.target.children[0].lastChild.classList.add("checkAnimate");
+            
+            
             tipDisplay = document.querySelector(".tip__display");
             if(tip) {
                 tipDisplay.textContent = tip;
@@ -151,12 +180,13 @@ var controller = (function(dataHolder, uiController) {
 
     //sets the chosenTip
     var setTip = function() {
-        var currentTip;
+        var currentTip, allTips;
 
         //data.currentTip = 0
-        tip = parseInt(event.target.textContent.replace("%", ""))
+        allTips = dataHolder.getAllTips();
+        tip = parseInt(event.target.textContent.replace("%", ""));
         dataHolder.changeTip(tip);
-        uiController.displayTip(tip);
+        uiController.displayTip(tip, allTips);
     }
 
     //splits bill
