@@ -65,13 +65,13 @@ var uiController = (function() {
 
             totalAmount = parseInt(total.join(""))/100;
             totalAmount2 = totalAmount.toFixed(2);
-            document.querySelector(".display__total").textContent = totalAmount2;
-            document.querySelector(".total__bill").textContent = totalAmount2;
+            document.querySelector(".display__total").textContent = "$" + totalAmount2;
+            document.querySelector(".total__bill").textContent = "$" + totalAmount2;
 
         },
         
         displayRange: function(range) {
-            document.querySelector(".slider__display").textContent = range;
+            // document.querySelector(".slider__display").textContent = range;
             document.querySelector(".friends__num").textContent = range;
         },
 
@@ -186,6 +186,9 @@ var controller = (function(dataHolder, uiController) {
         tip = parseInt(event.target.textContent.replace("%", ""));
         dataHolder.changeTip(tip);
         uiController.displayTip(tip, allTips);
+
+        //tip = chosen tip %
+        //allTips = array of set tips
     }
 
     //splits bill

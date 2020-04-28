@@ -22,6 +22,70 @@ body {
   height: 18vh;
   background-color: #14bb38;
   border-radius: 5px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(20, 187, 56, 0.85)), to(rgba(20, 187, 56, 0.85))), url("../images/bg.jpeg");
+  background-image: linear-gradient(to bottom, rgba(20, 187, 56, 0.85), rgba(20, 187, 56, 0.85)), url("../images/bg.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.display__width {
+  width: 90%;
+  height: 100%;
+  margin-left: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.display__left {
+  color: white;
+  width: 67%;
+  position: relative;
+}
+
+.display__right {
+  width: 33%;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  font-size: .65rem;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.display__bill, .display__people, .display__tipperc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.display__margin {
+  margin: 5px 0;
+}
+
+.absCenter {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.total__bill {
+  text-align: right;
+}
+
+.tip__percent {
+  text-align: right;
+}
+
+.numpad {
+  display: block;
 }
 
 .numpad__btn {
@@ -31,9 +95,11 @@ body {
   display: inline-block;
   position: relative;
   font-weight: bold;
+  vertical-align: top;
 }
 
 .numpad__btn .number {
+  pointer-events: none;
   position: absolute;
   top: 50%;
   left: 50%;
