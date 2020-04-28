@@ -116,7 +116,7 @@ var uiController = (function() {
 
         showSplit: function(range, eachPerPerson) {
             for(var i = 0; i < range; i++){
-                document.querySelector(".split__display").innerHTML += '<div class="split__display--item">' + eachPerPerson[i] + '</div>';
+                document.querySelector(".split__display").innerHTML += '<div class="split__display--item"><div class="text">$' + eachPerPerson[i] + '</div></div>';
             }
         }
     };
@@ -137,16 +137,15 @@ var controller = (function(dataHolder, uiController) {
             console.log(clickedNumID);
 
             //Backspace
-            if(clickedNumID < 10){
+            if(clickedNumID < 10 ){
                 currAmount.push(clickedNumID);
-            } else {
+            } 
+            else {
                 currAmount.pop();
             }
-            //Push ID to data.currentAmount
+            console.log(currAmount);
             
-
-            // totalAmount = parseInt(total.join(""))/100;
-            // totalAmount2 = totalAmount.toFixed(2);
+            //Push ID to data.currentAmount
 
             setNum = parseInt(currAmount.join(""))/100;
             fixedNum = setNum.toFixed(2);

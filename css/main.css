@@ -48,10 +48,12 @@ body {
 
 .numpad__btn .num-left {
   left: 20%;
+  pointer-events: none;
 }
 
 .numpad__btn .num-right {
   left: 80%;
+  pointer-events: none;
 }
 
 .slider {
@@ -122,6 +124,7 @@ body {
 
 .split__button {
   cursor: pointer;
+  outline: none;
   text-transform: uppercase;
   font-weight: bold;
   color: white;
@@ -134,10 +137,34 @@ body {
   background-color: #14bb38;
 }
 
-.split__display--item {
+.split__display {
+  position: relative;
   width: 100%;
+}
+
+.split__display--item {
+  width: 90%;
+  margin-left: 5%;
   height: 100px;
-  border: 1px solid blue;
+  font-weight: bold;
+  font-size: 2.35rem;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.split__display--item .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.split__display--item .text__head {
+  font-size: .7rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
 }
 
 .split__text {
