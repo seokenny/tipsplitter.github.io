@@ -53,6 +53,14 @@ var dataHolder = (function() {
             for(var i = 0; i < data.currentRange; i++){
                 data.eachPerson.push(per);
             }
+        },
+
+        resetData: function() {
+            data.currentAmount = [];
+            data.numAmount = 0.00;
+            data.currentRange = 0;
+            data.currentTip = 0;
+            data.eachPerson = [];
         }
     }
 })();
@@ -78,8 +86,6 @@ var uiController = (function() {
         displayTip: function(tip, allTips) {
             var tipDisplay, allButtons, allButtonsArr;
             allButtons = [];
-            console.log(event);
-            console.log(allTips);
 
             allButtons = document.querySelectorAll(".tip__button");
             allButtonsArr = Array.from(allButtons);
@@ -109,14 +115,28 @@ var uiController = (function() {
             }
         },
 
+        removeTip: function() {
+            document.querySelector(".tip__display").textContent = "0";
+            console.log("removed tip");
+        },
+
+        removeTotal: function() {
+            document.querySelector(".total__bill").textContent = "$0.00";
+            document.querySelector(".display__total").textContent = "$0.00";
+            console.log("removed total");
+        },
+
         switchOptions: function(range, eachPerPerson) {
             document.querySelector(".options").classList.toggle("hidden");
             this.showSplit(range, eachPerPerson);
         },
 
         showSplit: function(range, eachPerPerson) {
+            var alphabet;
+            alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
             for(var i = 0; i < range; i++){
-                document.querySelector(".split__display").innerHTML += '<div class="split__display--item"><div class="text">$' + eachPerPerson[i] + '</div></div>';
+                // document.querySelector(".split__display").innerHTML += '<div class="split__display--item"><div class="text">$' + eachPerPerson[i] + '</div></div>';
+                document.querySelector(".split__display").innerHTML += '<div class="split__display--item"><div class="text"><span class="text__head">Person ' + alphabet[i] + '</span><span class="text__number">$' + eachPerPerson[i] + '</span></div></div>'
             }
         }
     };
@@ -137,13 +157,24 @@ var controller = (function(dataHolder, uiController) {
             console.log(clickedNumID);
 
             //Backspace
-            if(clickedNumID < 10 ){
-                currAmount.push(clickedNumID);
-            } 
-            else {
+            if(clickedNumID == 10){
+                window.location.reload(false);
+            }
+            else if(currAmount.length < 8){
+                if(clickedNumID < 10 ){
+                    currAmount.push(clickedNumID);
+                } 
+                else {
+                    currAmount.pop();
+                    if(currAmount.length <= 0) {
+                        currAmount[0] = 0;
+                    }
+                    
+                }
+                console.log(currAmount);
+            } else if(clickedNumID > 9) {
                 currAmount.pop();
             }
-            console.log(currAmount);
             
             //Push ID to data.currentAmount
 
@@ -153,6 +184,7 @@ var controller = (function(dataHolder, uiController) {
             
 
             uiController.displayTotal(currAmount);
+
         });
         
         //Range event listener

@@ -12,6 +12,12 @@ body {
   height: 100vh;
 }
 
+h5 {
+    text-transform: uppercase;
+    font-size: .75rem;
+    letter-spacing: 1.5px;
+}
+
 .fullcontain {
   width: 90%;
   margin-left: 5%;
@@ -30,6 +36,9 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    &__total {
+        font-weight: 500;
+    }
     &__width {
         width: 90%;
         height: 100%;
@@ -96,15 +105,30 @@ body {
                 animation: transformNum .4s ease-in-out;
             }
         }
+        & .num-refresh img {
+            
+        }
         & .num-left {
             left: 20%;
             pointer-events: none;
+            & img {
+                height: 15px;
+                
+                
+            }
         }
         & .num-right {
             left: 80%;
             pointer-events: none;
+            & img {
+                height: 20px;
+            }
         }
     }
+}
+
+#num-10:hover .num-refresh img {
+    animation: reloadSpin .75s infinite;
 }
 
 .slider {
@@ -190,8 +214,8 @@ body {
         &--item {
             width: 90%;
             margin-left: 5%;
-            height: 100px;
-            font-weight: bold;
+            height: 125px;
+            font-weight: 500;
             font-size: 2.35rem;
             border:1px solid #ccc;
             position: relative;
@@ -205,6 +229,14 @@ body {
                     font-size: .7rem;
                     letter-spacing: .5px;
                     text-transform: uppercase;
+                    display:block;
+                    font-weight: bold;
+                    line-height: 0;
+                }
+                &__number {
+                    font-size: 2.25rem;
+                    line-height: 0;
+                    vertical-align: middle;
                 }
             }
         }
@@ -296,6 +328,36 @@ body {
     100% {
         top: -200%;
         height: 50%;
+    }
+}
+
+@keyframes reloadSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    12% {
+        transform: rotate(45deg);
+    }
+    25% {
+        transform: rotate(90deg);
+    }
+    37% {
+        transform: rotate(135deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    62% {
+        transform: rotate(225deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    87% {
+        transform: rotate(315deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
 

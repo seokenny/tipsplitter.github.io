@@ -15,12 +15,15 @@
             <div class="display">
                 <div class="display__width">
                     <div class="display__left">
-                        <h5>Total</h5>
-                        <h1 class="display__total absCenter"></h1>
+                        <div class="absCenter">
+                            <h5>Total</h5>
+                            <h1 class="display__total">$0.00</h1>
+                        </div>
+                        
                     </div>
                     <div class="display__right">
                         <div class="absCenter">
-                            <div class="display__bill display__margin">Bill <span class="total__bill"></span></div>
+                            <div class="display__bill display__margin">Bill <span class="total__bill">$0.00</span></div>
                             <div class="display__people display__margin">Friends <span class="friends__num"></span></div>
                             <div class="display__tipperc display__margin">Tip<div class="tip__percent">(<span class="tip__display">0</span>%)</div></div>
                         </div>
@@ -58,13 +61,13 @@
 
                 <!--Numpad-->
                 <div class="numpad">
-                    <div class="numpad__btn" id="num-1"><span class="number num-left">1</span></div><div class="numpad__btn" id="num-2"><span class="number">2</span></div><div class="numpad__btn" id="num-3"><span class="number num-right">3</span></div><div class="numpad__btn" id="num-4"><span class="number num-left">4</span></div><div class="numpad__btn" id="num-5"><span class="number">5</span></div><div class="numpad__btn" id="num-6"><span class="number num-right">6</span></div><div class="numpad__btn" id="num-7"><span class="number num-left">7</span></div><div class="numpad__btn" id="num-8"><span class="number">8</span></div><div class="numpad__btn" id="num-9"><span class="number num-right">9</span></div><div class="numpad__btn" id="num-10"><span class="number num-left">+</span></div><div class="numpad__btn" id="num-0"><span class="number">0</span></div><div class="numpad__btn" id="num-11"><span class="number num-right">back</span></div>
+                    <div class="numpad__btn" id="num-1"><span class="number num-left">1</span></div><div class="numpad__btn" id="num-2"><span class="number">2</span></div><div class="numpad__btn" id="num-3"><span class="number num-right">3</span></div><div class="numpad__btn" id="num-4"><span class="number num-left">4</span></div><div class="numpad__btn" id="num-5"><span class="number">5</span></div><div class="numpad__btn" id="num-6"><span class="number num-right">6</span></div><div class="numpad__btn" id="num-7"><span class="number num-left">7</span></div><div class="numpad__btn" id="num-8"><span class="number">8</span></div><div class="numpad__btn" id="num-9"><span class="number num-right">9</span></div><div class="numpad__btn" id="num-10"><span class="number num-left num-refresh"><img src="images/refresh.svg"></span></div><div class="numpad__btn" id="num-0"><span class="number">0</span></div><div class="numpad__btn" id="num-11"><span class="number num-right"><img src="images/delete.svg"></span></div>
                 </div>
             </div>
 
             <!--Split Display-->
             <div class="split__display">
-                <div class="split__display--item"><div class="text"><span class="text__head">Person A</span> <br/> $6.05</div></div>
+                <!-- <div class="split__display--item"><div class="text"><span class="text__head">Person A</span><span class="text__number">$6.05</span></div></div> -->
             </div>
 
             <!--Split amount-->
