@@ -81,6 +81,7 @@ var uiController = (function() {
         displayRange: function(range) {
             // document.querySelector(".slider__display").textContent = range;
             document.querySelector(".friends__num").textContent = range;
+            document.querySelector(".slider__display").textContent = range;
         },
 
         displayTip: function(tip, allTips) {
@@ -128,6 +129,7 @@ var uiController = (function() {
 
         switchOptions: function(range, eachPerPerson) {
             document.querySelector(".options").classList.toggle("hidden");
+            document.querySelector(".split__button").classList.toggle("goback");
             this.showSplit(range, eachPerPerson);
         },
 
@@ -188,7 +190,7 @@ var controller = (function(dataHolder, uiController) {
         });
         
         //Range event listener
-        document.querySelector(".slider").addEventListener("change", setRange);
+        document.querySelector(".slider").addEventListener("input", setRange);
 
         //Tip amount event listener
         document.querySelector(".tip").addEventListener("click", setTip);

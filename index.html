@@ -10,6 +10,10 @@
     </head>
 
     <body>
+        <div class="overlay">
+            <div class="overlay__box"></div>
+        </div>
+        <div class="padForTop"></div>
         <div class="fullcontain">
             <!--Display-->
             <div class="display">
@@ -24,8 +28,8 @@
                     <div class="display__right">
                         <div class="absCenter">
                             <div class="display__bill display__margin">Bill <span class="total__bill">$0.00</span></div>
-                            <div class="display__people display__margin">Friends <span class="friends__num"></span></div>
-                            <div class="display__tipperc display__margin">Tip<div class="tip__percent">(<span class="tip__display">0</span>%)</div></div>
+                            <div class="display__people display__margin">Friends <span class="friends__num">-</span></div>
+                            <div class="display__tipperc display__margin">Tip<div class="tip__percent">(<span class="tip__display">-</span>%)</div></div>
                         </div>
                     </div>
                 </div>
@@ -34,8 +38,9 @@
             <div class="options">
                 <!--Slider-->
                 <div class="slider">
-                    <input type="range" min="2" max="2000" value="5" class="slider__ui" id="sliderRange">
-                    <!-- <div class="slider__display">-</div> -->
+                    <div class="slider__box">
+                    </div>
+                    <input type="range" min="2" max="2000" value="5" class="slider__ui" id="sliderRange"><div class="slider__display">-</div>
                 </div>
 
                 <!--Tip Percent -->
