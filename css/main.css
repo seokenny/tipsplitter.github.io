@@ -98,6 +98,11 @@ h5 {
   text-align: right;
 }
 
+.delay-1s {
+  -webkit-animation-delay: .2s;
+          animation-delay: .2s;
+}
+
 .totalprice {
   font-size: 2rem;
   font-weight: 500;

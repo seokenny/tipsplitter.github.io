@@ -136,7 +136,7 @@ var uiController = (function() {
         showSplit: function(eachPerPerson) {
             document.querySelector(".split__text").innerHTML = "";
             document.querySelector(".st2").innerHTML = "";
-            document.querySelector(".split__bill").innerHTML += '<div><img src="images/hand.svg" style="height: 50px; margin-bottom:30px"><br/>Each person pays<br/><span class="totalprice">$' + eachPerPerson[0] + '</span><br/>including tip</div>';
+            document.querySelector(".split__bill").innerHTML += '<div class="animated bounceIn delay-1s"><img src="images/hand.svg" style="height: 50px; margin-bottom:30px" class="animated bounceInDown delay-1s thumbs__image"><br/>Each person pays<br/><span class="totalprice">$' + eachPerPerson[0] + '</span><br/>including tip</div>';
         }
     };
 })();
