@@ -93,10 +93,35 @@ h5 {
     animation-delay: .2s
 }
 
+.gotit {
+    padding: 15px 30px;
+    background-color: white;
+    margin-top: 20px;
+    font-size: 1rem;
+    border-radius: $default-border-radius;
+    border: 2px solid white;
+    background-color: $default-color;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer !important;
+    transition: all .2s ease-in-out;
+    &:active, &:hover {
+        background-color: white;
+        color: $default-color;
+    }
+}
+
+.no-pointer {
+    cursor: unset !important;
+}
+
 .totalprice {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 500;
-    margin: 10px 0;
+    display: block;
+    margin: 5px 0 -10px 0;
 }
 
 .tip__percent {
@@ -120,9 +145,7 @@ h5 {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            &:hover {
-                animation: transformNum .4s ease-in-out;
-            }
+            
         }
         & .num-refresh img {
             
@@ -144,6 +167,10 @@ h5 {
             }
         }
     }
+}
+
+.scaleNum {
+    animation: transformNum .4s ease-in-out;
 }
 
 #num-10:hover .num-refresh img {
@@ -341,15 +368,15 @@ h5 {
 
 @keyframes transformNum {
     0% {
-        transform: translate(-50%, -50%) scale(1);
+        transform:scale(1);
     }
 
     60% {
-        transform: translate(-50%, -50%) scale(1.45);
+        transform:scale(1.45);
     }
 
     100% {
-        transform: translate(-50%, -50%) scale(1);
+        transform:scale(1);
     }
 }
 

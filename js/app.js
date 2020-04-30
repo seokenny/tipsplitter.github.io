@@ -90,7 +90,6 @@ var uiController = (function() {
 
             allButtons = document.querySelectorAll(".tip__button");
             allButtonsArr = Array.from(allButtons);
-            console.log(allButtonsArr);
 
             allTests = document.querySelectorAll(".test");
             allTestsArr = Array.from(allTests);
@@ -118,25 +117,30 @@ var uiController = (function() {
 
         removeTip: function() {
             document.querySelector(".tip__display").textContent = "0";
-            console.log("removed tip");
         },
 
         removeTotal: function() {
             document.querySelector(".total__bill").textContent = "$0.00";
             document.querySelector(".display__total").textContent = "$0.00";
-            console.log("removed total");
         },
 
-        switchOptions: function(range, eachPerPerson) {
-            // document.querySelector(".options").classList.toggle("hidden");
-            document.querySelector(".split__button").classList.toggle("goback");
-            this.showSplit(eachPerPerson);
+        switchOptions: function(splitFunc, eachPerPerson) {
+            
+            document.querySelector(".split__button").classList.add("goback");
+            document.querySelector(".split__button").classList.add("no-pointer");
+            this.showSplit(splitFunc, eachPerPerson);
         },
 
-        showSplit: function(eachPerPerson) {
+        showSplit: function(splitFunc, eachPerPerson) {
             document.querySelector(".split__text").innerHTML = "";
             document.querySelector(".st2").innerHTML = "";
-            document.querySelector(".split__bill").innerHTML += '<div class="animated bounceIn delay-1s"><img src="images/hand.svg" style="height: 50px; margin-bottom:30px" class="animated bounceInDown delay-1s thumbs__image"><br/>Each person pays<br/><span class="totalprice">$' + eachPerPerson[0] + '</span><br/>including tip</div>';
+            document.querySelector(".split__bill").innerHTML += '<div class="animated bounceIn delay-1s"><img src="images/hand.svg" style="height: 50px; margin-bottom:30px" class="animated bounceInDown delay-1s thumbs__image"><br/>Each person pays<br/><span class="totalprice">$' + eachPerPerson[0] + '</span><br/>including tip<br/><button class="gotit animated bounceIn delay-1s">Got it!</button></div>';
+            if(document.querySelector(".split__button").classList.contains("goback")){
+                document.querySelector(".split").removeEventListener("click", splitFunc);
+                document.querySelector(".gotit").addEventListener("click",function(){
+                    window.location.reload(false);
+                });
+            }
         }
     };
 })();
@@ -153,7 +157,6 @@ var controller = (function(dataHolder, uiController) {
             clickedNum = event.target.id;
             clickedNumSplit = clickedNum.split("-");
             clickedNumID = clickedNumSplit[1];
-            console.log(clickedNumID);
 
             //Backspace
             if(clickedNumID == 10){
@@ -170,7 +173,6 @@ var controller = (function(dataHolder, uiController) {
                     }
                     
                 }
-                console.log(currAmount);
             } else if(clickedNumID > 9) {
                 currAmount.pop();
             }
@@ -224,21 +226,20 @@ var controller = (function(dataHolder, uiController) {
 
     //splits bill
     var splitBill = function() {
-        var range, numAmount, tipPerc, tipAmount, finalEach, totalPer, totalBill;
+        var range, numAmount, tipPerc, tipAmount, finalEach, totalPer, totalBill, splitFunc;
 
         //Get data.currentRange
         range = dataHolder.getCurrentRange();
         numAmount = dataHolder.getNumAmount();
         tipPerc = dataHolder.getCurrentTip();
+        splitFunc = splitBill;
 
         if(range > 0 && numAmount > 0 && tipPerc > 0) {
             //Calculate split
             //Calculated tip and added tip to total amount
             tipAmount = numAmount * (tipPerc/100);
-            console.log(tipAmount);
 
             totalBill = numAmount + tipAmount;
-            console.log(totalBill);
 
             //Problem
             totalPer = totalBill/range;
@@ -248,7 +249,7 @@ var controller = (function(dataHolder, uiController) {
 
             eachPerArray = dataHolder.getEachPerson();
 
-            uiController.switchOptions(range, eachPerArray);
+            uiController.switchOptions(splitFunc, eachPerArray);
         }
 
     }

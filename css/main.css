@@ -103,10 +103,37 @@ h5 {
           animation-delay: .2s;
 }
 
+.gotit {
+  padding: 15px 30px;
+  background-color: white;
+  margin-top: 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 2px solid white;
+  background-color: #14bb38;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer !important;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.gotit:active, .gotit:hover {
+  background-color: white;
+  color: #14bb38;
+}
+
+.no-pointer {
+  cursor: unset !important;
+}
+
 .totalprice {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 500;
-  margin: 10px 0;
+  display: block;
+  margin: 5px 0 -10px 0;
 }
 
 .tip__percent {
@@ -136,11 +163,6 @@ h5 {
           transform: translate(-50%, -50%);
 }
 
-.numpad__btn .number:hover {
-  -webkit-animation: transformNum .4s ease-in-out;
-          animation: transformNum .4s ease-in-out;
-}
-
 .numpad__btn .num-left {
   left: 20%;
   pointer-events: none;
@@ -157,6 +179,11 @@ h5 {
 
 .numpad__btn .num-right img {
   height: 20px;
+}
+
+.scaleNum {
+  -webkit-animation: transformNum .4s ease-in-out;
+          animation: transformNum .4s ease-in-out;
 }
 
 #num-10:hover .num-refresh img {
@@ -375,31 +402,31 @@ h5 {
 
 @-webkit-keyframes transformNum {
   0% {
-    -webkit-transform: translate(-50%, -50%) scale(1);
-            transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
   60% {
-    -webkit-transform: translate(-50%, -50%) scale(1.45);
-            transform: translate(-50%, -50%) scale(1.45);
+    -webkit-transform: scale(1.45);
+            transform: scale(1.45);
   }
   100% {
-    -webkit-transform: translate(-50%, -50%) scale(1);
-            transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 
 @keyframes transformNum {
   0% {
-    -webkit-transform: translate(-50%, -50%) scale(1);
-            transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
   60% {
-    -webkit-transform: translate(-50%, -50%) scale(1.45);
-            transform: translate(-50%, -50%) scale(1.45);
+    -webkit-transform: scale(1.45);
+            transform: scale(1.45);
   }
   100% {
-    -webkit-transform: translate(-50%, -50%) scale(1);
-            transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 
