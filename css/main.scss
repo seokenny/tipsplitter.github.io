@@ -89,6 +89,12 @@ h5 {
     text-align: right;
 }
 
+.totalprice {
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
 .tip__percent {
     text-align: right;
 }
@@ -276,24 +282,44 @@ h5 {
     display: none;
 }
 
-.overlay {
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    z-index: 2;
-    &__box {
-        padding-top: 50%;
-        width: 75%;
-        // background-color: rgb(243, 243, 243);
-        background-color: $default-color;
-        box-shadow: 0 0 5px #ccc;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 3;
-        border-radius: $default-border-radius;
-        border: 1px solid $default-color;
+// .overlay {
+//     position: absolute;
+//     height: 100vh;
+//     width: 100%;
+//     z-index: 2;
+//     background-color: transparent;
+//     overflow: hidden;
+    
+
+//     &__box {
+//         background-color: $default-color;
+//         position: absolute;
+//         top: 50%;
+//         left: 50%;
+//         transform: translate(-50%, -50%);
+//         z-index: 3;
+//         animation: openCircle .75s ease-in-out;
+//         animation-fill-mode: forwards;
+//         border-radius: 100%;
+//     }
+// }
+
+@keyframes openCircle {
+    0% {
+        height: 0;
+        width: 0;
+    }
+    5% {
+        height: 10vh;
+        width: 10vh;
+    }
+    10% {
+        height: 20vh;
+        width: 20vh;
+    }
+    100% {
+        height: 250vh;
+        width: 250vh;
     }
 }
 
@@ -532,15 +558,21 @@ h5 {
 .goback {
     margin: auto;
     display: block;
-    animation: buttonGoBack .3s ease-in-out;
+    animation: buttonGoBack .75s ease-in-out;
     animation-fill-mode: forwards;
 }
 
 @keyframes buttonGoBack {
     0% {
-        width: 100%;
+        height: 50px;
+    }
+    10% {
+        height: 43px;
+    }
+    20% {
+        height: 40px;
     }
     100% {
-        width: 50%;
+        height: 90vh;
     }
 }
